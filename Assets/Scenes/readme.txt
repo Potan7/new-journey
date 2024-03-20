@@ -9,3 +9,8 @@ BattleScene -> 전투장면 씬
 
 1. DoTween 애셋 import 했음
 2. 비 상업용 그림 애셋 있는데 따로 폴더 만들어서 보관중 (Import -> TestPaints_forBattle)
+
+포탄이가
+1. 같은 씬 작업할 경우 무조건 충돌나니 작업할 거면 BattleScene2, dungeon2 마냥 새로운 씬 복사해서 거기다가 작업한뒤
+합칠것
+
