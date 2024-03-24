@@ -1,36 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InvenSlot : MonoBehaviour
+    // 스크립트 명은 인벤 슬롯이지만 사실상 아이템을 카드 안에 넣는거임 (프리팹 사용)
 {
-    bool isitem = false;
-    public bool isItem { get { return isitem; } }
     public Item item;
 
     [SerializeField]
     Image itemImageRen;
+    [SerializeField]
+    TextMeshProUGUI itemName;
+    [SerializeField]
+    TextMeshProUGUI itemDecrption;
 
     public void AddItem(Item newItem)
     {
-        if (isItem)
-        {
-            throw new System.Exception("이미 아이템이 들어있습니다.");
-        }
-
-        isitem = true;
         item = newItem;
-        itemImageRen.sprite = item.itemImage;
+        itemImageRen.sprite = item.sprite;
         itemImageRen.gameObject.SetActive(true);
-    }
-
-    public void RemoveItem()
-    {
-        isitem = false;
-        item = null;
-        itemImageRen.sprite = null;
-        itemImageRen.gameObject.SetActive(false);
+        itemDecrption.text = item.decription;
+        itemName.text = item.visibleName;
     }
 
 }

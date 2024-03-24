@@ -4,36 +4,32 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    // 인벤토리 창 UI
-    public GameObject invenUI;
 
     // 모든 인벤토리 슬롯 상위 객체
-    public GameObject slotParent;
+    public Transform container;
+    // 아이템 카드 프리팹
+    public InvenSlot itemCardContanier;
 
-    [SerializeField]
-    InvenSlot[] slots;
+    Animator animator;
 
-    private void Awake()
+    List<InvenSlot> itemList = new List<InvenSlot>();
+
+    private void Start()
     {
-        slots = slotParent.GetComponentsInChildren<InvenSlot>();
+        animator = GetComponent<Animator>();
     }
 
-    // 가장 빠른 빈 칸에 아이템 넣기
-    public void AddItem(Item newitem)
+    public void AddItem(Item item)
     {
-        foreach (InvenSlot slot in slots)
-        {
-            if (!slot.isItem)
-            {
-                slot.AddItem(newitem);
-                return;
-            }
-        }
+        InvenSlot card = Instantiate(itemCardContanier, container);
+        card.AddItem(item);
+        itemList.Add(card);    
     }
+    
 
-    //인벤토리 메뉴의 X 버튼에 할당됨
-    public void ExitButton()
+    //인벤토리 키고끄는 버튼
+    public void SetButton(bool OnOff)
     {
-        invenUI.SetActive(false);
+        animator.SetBool("Open", OnOff);
     }
 }
